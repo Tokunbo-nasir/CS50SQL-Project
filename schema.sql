@@ -17,6 +17,7 @@ CREATE TABLE `enginespec`(
 CREATE TABLE `carspec`(
     `id` INT AUTO_INCREMENT,
     `make` VARCHAR(100),
+    `model` VARCHAR (100)
     `reg` INT,
     `year` YEAR,
     `price` BIGINT NOT NULL,
@@ -30,7 +31,7 @@ CREATE TABLE `carspec`(
 );
 
 CREATE VIEW `alltables` AS
-SELECT `carspec`.`id`, `carspec`.`make`, `carspec`.`reg`, `carspec`.`year`,
+SELECT `carspec`.`id`, `carspec`.`make`,`carspec`.`model`, `carspec`.`reg`, `carspec`.`year`,
 `carspec`.`price`,`carspec`.`milage`, `carspec`.`datetime`, `carspec`.`body_id`, `carspec`.`engine_id`,
 `enginespec`.`enginesize`, `enginespec`.`fueltype`,`enginespec`.`horsepower`,
 `bodyspec`.`bodytype`, `bodyspec`.`doors`, `bodyspec`.`gearbox`
@@ -39,14 +40,14 @@ JOIN `bodyspec` ON `bodyspec`.`id` = `carspec`.`body_id`
 JOIN `enginespec` ON `enginespec`.`id` = `carspec`.`engine_id`;
 
 CREATE VIEW `engineinfo` AS 
-SELECT  `carspec`.`id`, `carspec`.`make`, `carspec`.`reg`, `carspec`.`year`,
+SELECT  `carspec`.`id`, `carspec`.`make`,`carspec`.`model`, `carspec`.`reg`, `carspec`.`year`,
 `carspec`.`price`,`carspec`.`milage`, `carspec`.`datetime`,`carspec`.`engine_id`,
 `enginespec`.`enginesize`, `enginespec`.`fueltype`,`enginespec`.`horsepower`
 FROM `carspec`
 JOIN `enginespec` ON `enginespec`.`id` = `carspec`.`engine_id`;
 
 CREATE VIEW `bodyinfo` AS
-SELECT  `carspec`.`id`, `carspec`.`make`, `carspec`.`reg`, `carspec`.`year`,
+SELECT  `carspec`.`id`, `carspec`.`make`,`carspec`.`model`, `carspec`.`reg`, `carspec`.`year`,
 `carspec`.`price`,`carspec`.`milage`, `carspec`.`datetime`, `carspec`.`body_id`, 
 `bodyspec`.`bodytype`, `bodyspec`.`doors`, `bodyspec`.`gearbox`
 FROM `carspec`

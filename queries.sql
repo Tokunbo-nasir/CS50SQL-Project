@@ -17,14 +17,14 @@ UPDATE `carspec` JOIN `enginespec` ON `enginespec`.`id`=`carspec`.`id` SET `cars
 -- which have the least milage and are less than 10 years old , 
 -- organise by lowest milage and lowest age first
 
-SELECT `make`, `year`,`price` ,`bodytype`
+SELECT `make`, `model`, `year`,`price` ,`bodytype`
 FROM `alltables` 
 WHERE `year` BETWEEN '2014' AND '2024'
 ORDER BY `bodytype`,`milage` ASC, `year` ASC ;
 
 --2) What is the cheapest car with the largest engine 
 
-SELECT `carspec`.`make`,`enginespec`.`enginesize`, `carspec`.`price` 
+SELECT `carspec`.`make`, `model`,`enginespec`.`enginesize`, `carspec`.`price` 
 FROM `carspec`
 JOIN `enginespec` ON `carspec`.`engine_id` = `enginespec`.`id`
 ORDER BY `enginespec`.`enginesize` DESC, `carspec`.`price` ASC
